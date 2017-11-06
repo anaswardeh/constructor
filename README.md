@@ -1,5 +1,3 @@
-# constructor
-
 <h1>
 Hangman Constructor
 </h1>
