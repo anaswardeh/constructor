@@ -5,5 +5,5 @@ Hangman Constructor
 </h1>
 
 <p>
-<img href="https://media.giphy.com/media/xT0xeEYBElcwU8iMCs/giphy.gif">
+<img src="https://media.giphy.com/media/xT0xeEYBElcwU8iMCs/giphy.gif">
 </p>
