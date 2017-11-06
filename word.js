@@ -14,11 +14,12 @@ function Word(character) {
   };
 
   //After adding the letter, we need to check if it matches one of the word's letters.
-  this.charaChecker = function (charaChecker) {
+  this.charaChecker = function (checker) {
     var counter = 0;
+
     for (var i = 0; i < this.guesses.length; i++) {
 
-      if (this.guesses[i].char == guessLet) {
+      if (this.guesses[i].char == checker) {
         this.guesses[i].show = true;
         counter++;
       }
@@ -30,18 +31,18 @@ function Word(character) {
   //Joining String characters together after the word is complete
   this.returnFullWord = function () {
     var joinString = '';
-    for (i = 0; i < guesses.length; i++) {
+    for (i = 0; i < this.guesses.length; i++) {
       joinString += this.guesses[i].ReturningLetter();
     }
     return joinString;
-  }
+  };
 
   //After the whole word is found, it will show all letters
   this.findWord = function () {
     //Winning means all characters are shown.
-    this.won = this.guesses.every(function (currentLetter) {
+    this.won = this.guesses.every(function (let) {
       //Show all letters
-      return currentLetter.show;
+      return let.show;
     });
     return this.won;
   };

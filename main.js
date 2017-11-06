@@ -12,50 +12,99 @@ grw(randomWord => random = randomWord);
 var random;
 
 
+console.log("-----------------------------");
+console.log("Welcome to Hangman!");
+console.log("The level of this game is set to Expert");
+console.log(clc.red("Please Guess the First Letter"));
+console.log("-----------------------------");
 
-function Main(){
+play = {
+    randomWord: [random.toLowerCase()],
+    guessesLeft: 10,
+    word: '',
 
-    this.play = function(){
-        
-        //Randomizing a new word.
-        this.wordBank();
+
+
+    game: function (word) {
+
+        this.reset();
+        this.word = new Word(this.randomWord[Math.floor(Math.random() * this.randomWord.length)]);
+        this.word.addLetter();
+        this.askLetter();
+    },
+
+
+
+
+    reset: function () {
         this.guessesLeft = 10;
-        
-        //Reset Guesses Left.
-        this.currentWrd = null
+    },
 
-        this.currentWrd = new Word(this.wordBank[Math.floor(Math.random() * this.wordBank.length)]);
-		this.currentWrd.getLet();
-		this.promptUser();
-        
-    }
 
-    this.wordBank =function(){
-        grw(randomWord =>  random = randomWord);
-        var random = random.charAt(0).toUpperCase() + random.slice(1);
-        console.log(random);
-        this.askLetter(random);
-    }
 
-    //ask for the letter of the word.
-    this.askLetter = function(wordToGuess){
+    askLetter: function () {
+
+        var that = this;
+
         inquirer.prompt([{
             type: "input",
             name: "letter",
-            message: "Enter a letter: "
-        }]).then(function(answer){
+            message: "\nGuess a letter!"
+        }]).then(function (choice) {
+            console.log("\nYou guessed: " + choice.letter.toLowerCase());
+        
+            var totalSum = that.word.charaChecker(choice.letter.toLowerCase());
 
-            //var chcker = new Word
-        })
-    }
-    this.checker = function(userGuess, wrd){
-        console.log(userGuess);
-        console.log(wrd);   
-    }
+            if(totalSum == 0){
+                console.log("WRONG!");
+                console.log(that.word.returnFullWord());
+                that.guessesLeft--;
+
+            }else{
+                console.log("CORRECT!");
+                console.log(that.word.returnFullWord());
+
+            if(that.word.findWord()){
+                console.log("You won!");
+                console.log("-----------------------------");
+                
+                wd.getDef(random, "en", null, function (definition) {
+                    console.log(clc.red(definition.definition));
+                    console.log("\n");
+                });
+
+                return;
+                
+            }
+        }
+
+
+        console.log("Guesses remaining: " + that.guessesLeft);
+        console.log("-------------------");
+        
+        if ((that.guessesLeft > 0) && (that.word.won == false)) {
+            that.askLetter();
+
+
+        } else if (that.guessesLeft == 0) {
+            console.log("Game over. Correct Word ", that.word.character);
+
+            wd.getDef(random, "en", null, function (definition) {
+                console.log(clc.red(definition.definition));
+                console.log("\n");
+            });
+
+        } else {
+            console.log(that.word.returnFullWord());
+        }
+
+
+    });
+
 }
 
 
+};
 
-var game = new Main();
 
-game.play();
+play.game();
