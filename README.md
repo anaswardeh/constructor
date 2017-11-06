@@ -17,13 +17,18 @@ So, this exercise gives us a glimps about object oriented programming. JavaScrip
 
 <h1>
 Letter.JS
-<h1>
+</h1>
 
+<p>
 <img src="letter.png">
+</p>
 
+<p>
+In Letter.JS, the character is stored, then we give it a default boolean state, in this case it is false. Then a function that will replace each letter with an underscore unless it is guess. At this point, the letter will be shown and it will not be represented by an underscore.
+</p>
 </div>
 <p>
 <a href="#">
-<img src="https://media.giphy.com/media/xT0xeEYBElcwU8iMCs/giphy.gif">
+<img src="https://media.giphy.com/media/xT0xeCyAFFCpDLtNV6/giphy.gif">
 </a>
 </p>
